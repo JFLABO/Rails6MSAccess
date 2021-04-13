@@ -13,3 +13,7 @@ require 'dbi'
 
     @fuga = ""
     results.each { |r| @fuga += to_utf8(r[:Piyo]) }
+
+Microsoft Access Driver (*.mdb, *.accdb) is the name of Microsoft's ODBC driver for Microsoft Access. It is only available for Windows. 
+
+test
