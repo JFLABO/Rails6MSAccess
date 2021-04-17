@@ -1,4 +1,5 @@
 require 'dbi'
+require "nkf"
 def to_sjis(str)
   str ? NKF.nkf('-s', str) : ""
 end
@@ -30,16 +31,17 @@ end
 
     dbh = create_database_handle
     #results = dbh.execute(sql)
-	sth = dbh.prepare("SELECT 'Hello, DBI World' AS Message")
+	#sth = dbh.prepare("SELECT 'Hello, DBI World' AS Message")
+	sth = dbh.prepare("SELECT * from links")
 	sth.execute()
 
     #@fuga = ""
     #results.each { |r| @fuga += to_utf8(r[:title]) }
 	
 while row = sth.fetch do
-    print "Message", "n";
-    print "-------------------n";
-    print row[0]
+    print "Message", "\n";
+    print "-------------------\n";
+    print to_utf8(row["title"])
 end
 sth.finish
 dbh.disconnect
